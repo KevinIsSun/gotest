@@ -7,7 +7,17 @@ confidential and proprietary to Naive Systems Ltd. and its affiliates.
 
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"sync"
+)
+
+var mu sync.Mutex
+
+func fn1() {
+	mu.Lock()
+	defer mu.Lock()
+}
 
 func main() {
 	username := "admin"
