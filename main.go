@@ -7,15 +7,13 @@ confidential and proprietary to Naive Systems Ltd. and its affiliates.
 
 package main
 
-import (
-	"sync"
-)
+import "errors"
+
+func getError() (string, error) {
+	return "msg", errors.New("some error")
+}
 
 func main() {
-	wg := sync.WaitGroup{}
-	go func() {
-		wg.Add(1) //@ diag(`should call wg.Add(1) before starting`)
-		wg.Done()
-	}()
-	wg.Wait()
+	msg, _ := getError()
+	print(msg + "\n")
 }
