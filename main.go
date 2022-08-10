@@ -21,15 +21,18 @@ func fn1() {
 	defer mu.Lock()
 }
 
+func fn2() {
+	l, err := net.Listen("tcp", "0.0.0.0:2000")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer l.Close()
+}
+
 func main() {
 	username := "admin"
 	var password = "f62e5bcda4fae4f82370da0c6f20697b8f8447ef"
 
 	fmt.Println("Doing something with: ", username, password)
 
-	l, err := net.Listen("tcp", "0.0.0.0:2000")
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer l.Close()
 }
